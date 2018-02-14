@@ -37,7 +37,7 @@ node
     stage('Build image') 
     {
         // This builds the actual image; synonymous to docker build on the command line
-        app = docker.build("${IMAGE_NAME}:${IMAGE_TAG_REV}", "${IMAGE_PATH}")
+        app = docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "${IMAGE_ARGS}")
     }
 
 
