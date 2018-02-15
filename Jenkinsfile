@@ -13,7 +13,7 @@ node
     def PUSH_BUILD_NUMBER = (env.BRANCH_NAME == 'master')
     
 
-    def IMAGE_ARGS         = '.'
+    def IMAGE_ARGS         = '--pull .'
     
     // Workaround a current issue with docker.withRegistry
     // https://issues.jenkins-ci.org/browse/JENKINS-38018 
@@ -24,7 +24,7 @@ node
       DOCKERHUB_USERNAME = USERNAME
     }      
 
-    def IMAGE_NAME        = "$DOCKERHUB_USERNAME/jenkins-master"
+    def IMAGE_NAME        = "$DOCKERHUB_USERNAME/jenkins-slave-u16_04"
 
     def app
     
