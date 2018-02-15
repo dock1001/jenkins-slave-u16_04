@@ -24,7 +24,7 @@ node
       DOCKERHUB_USERNAME = USERNAME
     }      
 
-    def IMAGE_NAME        = "$DOCKERHUB_USERNAME/jenkins-master"
+    def IMAGE_NAME        = "$DOCKERHUB_USERNAME/jenkins-slave"
 
     def app
     
