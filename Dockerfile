@@ -4,12 +4,11 @@ FROM ubuntu:16.04
 USER root
 
 RUN apt-get update \
- && apt-get -y upgrade \
  && apt-get -y install \
-        curl \
         apt-transport-https \
-        software-properties-common \
-        git
+        curl \
+        git \
+        software-properties-common
 
 # Install the Docker CLI
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
