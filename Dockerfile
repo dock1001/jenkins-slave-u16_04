@@ -1,5 +1,5 @@
 # Based on https://github.com/rancher/jenkins-slave
-FROM ubuntu:xenial
+FROM ubuntu:16.04
 
 USER root
 
