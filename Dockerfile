@@ -36,13 +36,15 @@ ENV JENKINS_SWARM_VERSION 3.8
 ENV HOME /home/jenkins-slave
 
 RUN useradd -c "Jenkins Slave user" -d $HOME -m jenkins-slave \
+ && usermod -aG docker jenkins-slave \
  && curl --create-dirs -sSLo $HOME/swarm-client-$JENKINS_SWARM_VERSION.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION.jar
 COPY cmd.sh /cmd.sh
 
-# VOLUME ["/var/jenkins"]
+USER jenkins-slave
 
 #ENV JENKINS_USERNAME jenkins
 #ENV JENKINS_PASSWORD jenkins
 #ENV JENKINS_MASTER http://jenkins:8080
+# VOLUME ["/var/jenkins"]
 
 CMD [ "/bin/bash", "/cmd.sh" ]
