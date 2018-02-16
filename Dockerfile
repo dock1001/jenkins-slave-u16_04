@@ -1,8 +1,6 @@
 # Based on https://github.com/rancher/jenkins-slave
 FROM ubuntu:16.04
 
-USER root
-
 RUN apt-get update \
  && apt-get -y install \
         apt-transport-https \
@@ -36,11 +34,18 @@ ENV JENKINS_SWARM_VERSION 3.8
 ENV HOME /home/jenkins-slave
 
 RUN useradd -c "Jenkins Slave user" -d $HOME -m jenkins-slave \
- && curl --create-dirs -sSLo $HOME/swarm-client-$JENKINS_SWARM_VERSION.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION.jar
+ && usermod -aG docker jenkins-slave \
+ && curl --create-dirs -sSLo $HOME/swarm-client-$JENKINS_SWARM_VERSION.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION.jar \
+ && mkdir /var/jenkins \
+ && chown jenkins-slave:jenkins-slave /var/jenkins
 COPY cmd.sh /cmd.sh
+
+USER jenkins-slave
 
 #ENV JENKINS_USERNAME jenkins
 #ENV JENKINS_PASSWORD jenkins
 #ENV JENKINS_MASTER http://jenkins:8080
+
+VOLUME ["/var/jenkins"]
 
 CMD [ "/bin/bash", "/cmd.sh" ]
