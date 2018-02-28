@@ -1,3 +1,4 @@
+#!/usr/bin/env groovy
 // Based on 
 // - https://getintodevops.com/blog/building-your-first-docker-image-with-jenkins-2-guide-for-developers
 // - http://fishi.devtail.io/weblog/2016/11/20/docker-build-pipeline-as-code-jenkins/
@@ -6,7 +7,7 @@ node
     // some basic config
     def DOCKERHUB_USERNAME = 'NotDefined'
 
-    def IMAGE_TAG         = (env.BRANCH_NAME == 'master'  ? 'custom' : 'dev')
+    def IMAGE_TAG         = (env.BRANCH_NAME == 'master'  ? 'latest' : 'dev')
     //def IMAGE_TAG_SHORT   = IMAGE_TAG.substring(0,1)
     //def IMAGE_TAG_REV     = "${IMAGE_TAG_SHORT}${env.BUILD_NUMBER}"
   
