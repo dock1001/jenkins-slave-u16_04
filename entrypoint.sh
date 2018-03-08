@@ -18,7 +18,7 @@ if [ ! -z "$SLAVE_LABELS" ]; then
   PARAMS="$PARAMS -labels $SLAVE_LABELS"
 fi
 if [ ! -z "$SLAVE_NAME" ]; then
-  PARAMS="$PARAMS -name ${SLAVE_NAME}_${HOSTNAME}
+  PARAMS="$PARAMS -name ${SLAVE_NAME}_${HOSTNAME}"
 fi
 if [ ! -z "$JENKINS_MASTER" ]; then
   PARAMS="$PARAMS -master $JENKINS_MASTER"
