@@ -30,7 +30,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV PATH $JAVA_HOME/bin:$PATH
 
 # Jenkins swarm
-ENV JENKINS_SWARM_VERSION 3.8
+ENV JENKINS_SWARM_VERSION 3.10
 ENV HOME /home/jenkins-slave
 
 RUN useradd -c "Jenkins Slave user" -d $HOME -m jenkins-slave \
@@ -38,7 +38,7 @@ RUN useradd -c "Jenkins Slave user" -d $HOME -m jenkins-slave \
  && curl --create-dirs -sSLo $HOME/swarm-client-$JENKINS_SWARM_VERSION.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION.jar \
  && mkdir /var/jenkins \
  && chown jenkins-slave:jenkins-slave /var/jenkins
-COPY cmd.sh /cmd.sh
+COPY entrypoint.sh /entrypoint.sh
 
 USER jenkins-slave
 
@@ -48,4 +48,4 @@ USER jenkins-slave
 
 VOLUME ["/var/jenkins"]
 
-CMD [ "/bin/bash", "/cmd.sh" ]
+ENTRYPOINT ["/entrypoint.sh"]

@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 # jenkins swarm slave
 JAR=`ls -1 $HOME/swarm-client-*.jar | tail -n 1`
@@ -17,7 +18,7 @@ if [ ! -z "$SLAVE_LABELS" ]; then
   PARAMS="$PARAMS -labels $SLAVE_LABELS"
 fi
 if [ ! -z "$SLAVE_NAME" ]; then
-  PARAMS="$PARAMS -name $SLAVE_NAME"
+  PARAMS="$PARAMS -name ${SLAVE_NAME}_${HOSTNAME}
 fi
 if [ ! -z "$JENKINS_MASTER" ]; then
   PARAMS="$PARAMS -master $JENKINS_MASTER"
@@ -28,8 +29,8 @@ else
   fi
 fi
 
-mkdir $HOME/$HOSTNAME
+#mkdir $HOME/$HOSTNAME
 
 # We utilize the shared volume for all instances
-java -jar $JAR $PARAMS -fsroot /var/jenkins/$HOSTNAME
-
+echo Running java -jar $JAR $PARAMS -fsroot /var/jenkins/$HOSTNAME
+exec java -jar $JAR $PARAMS -fsroot /var/jenkins/$HOSTNAME
