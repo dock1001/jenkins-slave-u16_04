@@ -49,9 +49,6 @@ USER jenkins-slave
 #ENV JENKINS_PASSWORD jenkins
 #ENV JENKINS_MASTER http://jenkins:8080
 
-RUN mkdir -p $JENKINS_PERSISTENT_CACHE \
- && chmod 777 $JENKINS_PERSISTENT_CACHE
-
 VOLUME ["/var/jenkins"]
 
 ENTRYPOINT ["/entrypoint.sh"]
