@@ -32,6 +32,7 @@ ENV PATH $JAVA_HOME/bin:$PATH
 # Jenkins swarm
 ENV JENKINS_SWARM_VERSION 3.10
 ENV HOME /home/jenkins-slave
+ENV JENKINS_PERSISTENT_CACHE $HOME/PersistentCache
 
 RUN useradd -c "Jenkins Slave user" -d $HOME -m jenkins-slave \
  && usermod -aG docker jenkins-slave \
@@ -45,6 +46,8 @@ USER jenkins-slave
 #ENV JENKINS_USERNAME jenkins
 #ENV JENKINS_PASSWORD jenkins
 #ENV JENKINS_MASTER http://jenkins:8080
+
+RUN mkdir -p $JENKINS_PERSISTENT_CACHE
 
 VOLUME ["/var/jenkins"]
 
