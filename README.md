@@ -1,6 +1,6 @@
-# jenkins-slave-u16_04
+# jenkins-slave-u18_04
 
-Ubuntu 16.04 xenial
+Ubuntu 18.04 xenial
 - Docker support
 - Jenkins swarm
 
