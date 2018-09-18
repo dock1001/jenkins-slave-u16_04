@@ -1,6 +1,6 @@
 # jenkins-slave-u18_04
 
-Ubuntu 18.04 xenial
+Ubuntu 18.04 Bionic Beaver
 - Docker support
 - Jenkins swarm
 
