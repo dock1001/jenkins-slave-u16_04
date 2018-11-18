@@ -7,6 +7,7 @@ RUN apt-get update \
         curl \
         git \
         software-properties-common \
+        rsync \
  && rm -rf /var/lib/apt/lists/*
 
 # Install the Docker CLI
