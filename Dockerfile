@@ -11,6 +11,9 @@ RUN apt-get update \
         rsync \
  && rm -rf /var/lib/apt/lists/*
 
+# Export JAVA_HOME variable
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
+
 # Install the Docker CLI
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
  && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable" \
